@@ -1,0 +1,13 @@
+﻿{
+  "id": "custom-hanli",
+  "name": "韩立·结婴",
+  "installFolder": "HanLiCodexBoot",
+  "shortcut": "HanLi Codex",
+  "config": {
+    "DisplayName": "韩立·结婴 · Codex",
+    "TextTitle": "道友，请留步",
+    "TextSubtitle": "灵气汇聚，仙途将启……",
+    "TitleColor": "#D9EFDA",
+    "SubtitleColor": "#B9E0CF"
+  }
+}

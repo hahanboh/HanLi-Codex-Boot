@@ -1,0 +1,15 @@
+name: Windows checks
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - shell: powershell
+        run: ./scripts/test.ps1
+      - shell: powershell
+        run: ./scripts/verify-repository.ps1

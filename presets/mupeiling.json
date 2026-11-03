@@ -1,0 +1,13 @@
+﻿{
+  "id": "custom-mupeiling",
+  "name": "慕沛灵·红绡仙影",
+  "installFolder": "MuPeilingCodexBoot",
+  "shortcut": "MuPeiling Codex",
+  "config": {
+    "DisplayName": "慕沛灵·红绡仙影 · Codex",
+    "TextTitle": "仙缘再续",
+    "TextSubtitle": "清风引仙路，静候洞府开启……",
+    "TitleColor": "#FAEBD2",
+    "SubtitleColor": "#EBD2B4"
+  }
+}

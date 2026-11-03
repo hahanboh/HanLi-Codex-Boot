@@ -21,7 +21,7 @@ python .\tools\create_media.py "C:\Media\recording.mp4" --start 14 --duration 14
 
 `--start` 相对原始视频；`--loop-start/end` 相对裁出的片段。默认静音、1280×720、30 FPS、H.264。视频中等待段已预合成交叉淡化，运行时不反复 seek。启动器窗口默认1600×900，放大720p不增加原始清晰度。
 
-3. 下载 [Windows x64 Release](https://github.com/hahanboh/HanLi-Codex-Boot/releases/latest) 并解压的用户无需编译；从源码安装时先构建及隔离测试：
+3. 下载 [Windows x64 Release](https://github.com/hahanboh/HanLi-Codex-Boot/releases/tag/v0.1.0) 并解压的用户无需编译；从源码安装时先构建及隔离测试：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy RemoteSigned -File .\scripts\test.ps1

@@ -1,8 +1,7 @@
-﻿/build/
+/build/
 /dist/
 /.local/
 /private/
-/media/
 **/__pycache__/
 **/logs/
 **/qa/
@@ -32,3 +31,6 @@
 /config/local*.json
 
 /launcher.json
+
+!/media/hanli.mp4
+!/media/mupeiling.mp4

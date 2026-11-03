@@ -13,12 +13,18 @@ function Get-PublicGitFiles {
  return @(($output -split '\r?\n')|Where-Object {$_.Length -gt 0})
 }
 $files=@(Get-PublicGitFiles -Repository $repo)
+$samples=Get-Content (Join-Path $repo 'media/samples.json') -Raw -Encoding UTF8|ConvertFrom-Json
 $blocked='(?i)(^|/)(private|media|logs|qa|\.integration|cdp-profile)(/|$)|\.(mp4|m4s|webm|mov|mkv|gif|jpg|jpeg|png|ico|exe|dll|lnk|sqlite|log|zip)$|(^|/)\.env($|\.)'
 foreach($relative in $files){
- if($relative -match $blocked){throw "Private/generated file tracked: $relative"}
+ if($relative -in @('media/hanli.mp4','media/mupeiling.mp4')){
+  $expected=$samples.files.((Split-Path $relative -Leaf))
+  if((Get-FileHash -LiteralPath (Join-Path $repo $relative)).Hash.ToLowerInvariant() -ne $expected){throw 'Sample media changed; review distribution rights and update sample manifest.'}
+  continue
+ }
+ if($relative -like 'media/*.md' -or $relative -eq 'media/samples.json'){}elseif($relative -match $blocked){throw "Private/generated file tracked: $relative"}
  $text=[IO.File]::ReadAllText((Join-Path $repo $relative))
  if($text -match '(?i)C:[\\/]Users[\\/][^\\/\s"'']+|E:[\\/]WpSystem|sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}'){
   throw "Personal path or credential pattern found: $relative"
  }
 }
-Write-Output "PASS: $($files.Count) tracked source files. No blocked media/private paths/credential patterns. Manual review still required."
+Write-Output "PASS: $($files.Count) tracked source files. Only approved samples; no private paths or credential patterns. Manual review still required."

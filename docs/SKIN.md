@@ -6,7 +6,7 @@
 
 **启用本机127.0.0.1:9335调试端口后，同机程序可能访问可见聊天等应用内容。** 这是可选能力，安装时只有明确传入-EnableSkin才启用；不公开绑定0.0.0.0。桥接复用上游进程和CDP身份校验，不读取API Key文件。首次换肤会使用独立CDP浏览器配置，可能需要在该配置重新登录；不要复制凭据来绕过登录。
 
-本机兼容改动需要应用到上游1.7.3的payload/scripts/injector.mjs：
+兼容改动需要应用到上游1.7.3的payload/scripts/injector.mjs：
 
 1. runOneShot内两处applyToSession(session, payload)应为applyToSession(session, loadedPayload)。检查版本中是否已修复，勿全文件盲替换。
 2. setStreamCspBypass函数中，requested为false且session.dreamSkinStreamCspBypass尚未初始化时，赋false并返回，避免静态图片首次应用时多发不必要的Page.setBypassCSP。

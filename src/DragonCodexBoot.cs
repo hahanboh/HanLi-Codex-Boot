@@ -30,6 +30,7 @@ namespace DragonCodexBoot {
   public string TitleColor { get; set; }
   public string SubtitleColor { get; set; }
   public string ThemeDirectory { get; set; }
+  public bool UseVideoDuration { get; set; }
   public bool FadeOnly { get; set; }
   public bool PlayWhileWaiting { get; set; }
   public bool AutoReplaceEntrypoints { get; set; }
@@ -281,6 +282,13 @@ namespace DragonCodexBoot {
      +" at "+initialBounds.Left+","+initialBounds.Top);
    };
    media.MediaOpened+=delegate {
+    if(cfg.UseVideoDuration&&media.NaturalDuration.HasTimeSpan) {
+     // Follow a replacement video's duration without asking users to edit keyframes.
+     double length=Math.Min(60,media.NaturalDuration.TimeSpan.TotalSeconds);
+     cfg.HoldAt=Math.Max(.1,length-2);
+     cfg.TransitionStart=Math.Max(cfg.HoldAt+.1,length-.65);
+     cfg.TransitionEnd=Math.Max(cfg.TransitionStart+.1,length-.05);
+    }
     opened=true;Bounds actual=Native.ClientBounds(host);
     Log("media-opened player-client="+actual.Width+"x"+actual.Height+" at "+actual.Left+","+actual.Top);
     Native.SetForegroundWindow(host);

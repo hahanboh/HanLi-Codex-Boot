@@ -13,4 +13,5 @@ if ($LASTEXITCODE -ne 0) { throw 'Test harness compilation failed.' }
 if ($LASTEXITCODE -ne 0) { throw 'Geometry or configuration tests failed.' }
 & (Join-Path $repoRoot 'tests/EntrypointTests.ps1')
 & (Join-Path $repoRoot 'tests/PresetTests.ps1')
+& (Join-Path $repoRoot 'tests/QuickStartTests.ps1')
 Get-Content -LiteralPath (Join-Path $outputRoot 'qa/self-test.json') -Raw

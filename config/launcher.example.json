@@ -40,5 +40,6 @@
   "TextSubtitle": "灵气汇聚，仙途将启……",
   "TitleColor": "#D9EFDA",
   "SubtitleColor": "#B9E0CF",
-  "ThemeDirectory": null
+  "ThemeDirectory": null,
+  "UseVideoDuration": true
 }

@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param([string]$IconPath)
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -39,8 +39,5 @@ if ((Test-Path -LiteralPath $demoVideo) -and !(Test-Path -LiteralPath $outputVid
 New-Item -ItemType Directory -Path (Join-Path $outputRoot 'scripts') -Force | Out-Null
 foreach ($name in @('integrate-entrypoints.ps1','Import-Animation.ps1','install-start-menu.ps1')) {
     Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination (Join-Path $outputRoot 'scripts') -Force
-}
-foreach ($name in @('Restore-Original-Entrypoints.cmd','Rescan-Entrypoints.cmd')) {
-    Copy-Item -LiteralPath (Join-Path $repoRoot $name) -Destination $outputRoot -Force
 }
 Write-Output ('Built: ' + (Join-Path $outputRoot 'DragonCodexBoot.exe'))
